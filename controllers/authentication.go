@@ -1,20 +1,31 @@
 package models
 
 // Authentication stores login credentials and user role
-type authentication struct {
-    userId       string `json:"userId"`
-    userName     string `json:"userName"`
-    passwordHash string `json:"passwordHash"`
-    role         string `json:"role"`
+type Authentication struct {
+    userId       string
+    userName     string
+    passwordHash string
+    role         string
+}
+
+// NewAuthentication is a constructor function that creates and returns
+// a pointer to an Authentication instance.
+func newAuthentication(userId, userName, passwordHash, role) *Authentication {
+	return &Authentication{
+		userId:       userId,
+		userName:     userName,
+		passwordHash: passwordHash,
+		role:         role,
+	}
 }
 
 // Example functions that could be implemented later
-func (a *authentication) Login(userName, password string) bool {
+func (a *Authentication) Login(userName, password string) bool {
     // Placeholder logic for authentication
     return userName == a.userName && password == a.passwordHash
 }
 
-func (a *authentication) Register(userName, password, role string) bool {
+func (a *Authentication) Register(userName, password, role string) bool {
     // Placeholder for registration logic
     a.userName = userName
     a.passwordHash = password
@@ -22,6 +33,6 @@ func (a *authentication) Register(userName, password, role string) bool {
     return true
 }
 
-func (a *authentication) Logout() {
+func (a *Authentication) Logout() {
     // Example logout logic
 }
